@@ -1,29 +1,30 @@
-const string:string = 'Zhenya loh!';
-alert(string);
+import './scss/index.scss';
 
-interface PersonInterface {
-  name: string,
-  surName: string,
-  age: number,
-  job: string,
+let thumb = $('.thumb');
+
+thumb.on('mousedown', thumbMouseDownHandler)
+
+function thumbMouseDownHandler(event: JQuery.Event) {
+  const slider = $('#slider');
+  thumb.css({
+    'position': 'absolute',
+    'z-index': '1000',
+  });
+  moveAt(event.pageX);
+  console.log('lol');
+  slider.on('mousemove', sliderMouseMoveHandler);
+  thumb.on('mouseup', thumbMouseUpHandler);
 }
 
-class Person implements PersonInterface {
-  name: string;
-  surName: string;
-  age: number;
-  job: string;
-  constructor(name: string, surName: string, age: number, job: string) {
-    this.name = name;
-    this.surName = surName;
-    this.age = age;
-    this.job = job;
-  };
-  greeting(): void {
-    alert(`YO, my name is ${this.name} ${this.surName}, I work as a ${this.job} and Zhenya is loh!!!`);
-  }
+function moveAt(pageX: number) {
+  thumb.css('left', `${pageX - thumb.outerWidth()/2}px`)
 }
 
-const Andrew = new Person('Andrew', 'Sikera', 22, 'tuneyadec');
+function sliderMouseMoveHandler(event: JQuery.Event) {
+  moveAt(event.pageX);
+}
 
-Andrew.greeting();
+function thumbMouseUpHandler(event: JQuery.Event) {
+  $('#slider').off();
+  thumb.off('mouseup');
+}
