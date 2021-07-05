@@ -7,24 +7,37 @@
     width: 100%;
     height: 15px;
     cursor: pointer;
+    position: relative;
+    .progress-bar {
+      background-color: purple;
+      height: 100%;
+      position: absolute;
+      z-index: 0;
+      left: 0;
+      top: 0;
+      border-radius: inherit;
+    }
     .thumb {    
       position: relative;
       width: 10px;
+      z-index: 5;
       .handle {
         position: relative;
         top: -5px;
         right: 5px;
-        background: teal;
+        background: lightblue;
         cursor: pointer;
         width: 10px;
         height: 25px;
         border-radius: 3px;
+        border: 1px solid blue;
       }
       .tooltip {
         height: 20px;
         position: fixed;
         width: 9px;
         top: 30px;
+        margin-left: -7.5px;
       }
     }
   }
